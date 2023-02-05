@@ -1,4 +1,4 @@
-const { response } = require("express");
+//const { response } = require("express");
 
 let imgStored = localStorage.getItem("background-image")
 let passwordStored = localStorage.getItem("password")
@@ -6,10 +6,11 @@ let userStored = localStorage.getItem("username")
 
 loadHome()
 
+//console.log("prova")
 document.body.style.backgroundImage = localStorage.getItem("background-image");
 var uploaded_image;
 
-image_input.addEventListener('change', function() {
+/*image_input.addEventListener('change', function() {
   const reader = new FileReader();
   reader.addEventListener('load', () => {
     uploaded_image = reader.result;
@@ -19,7 +20,7 @@ image_input.addEventListener('change', function() {
     document.body.style.backgroundImage = `url(${uploaded_image})`;
   });
   reader.readAsDataURL(this.files[0]);
-});
+});*/
 
 let settingsHome = document.querySelector(".settings-home")
 
@@ -30,13 +31,6 @@ settingsHome.addEventListener("click", event=>{
 
 
 })
-
-
-
-
-
-
-
 
 function register(){
 
@@ -123,41 +117,22 @@ var crypt = {
 };
 
 function loadLogin(){
-
+    
 }
 
+/**
+ * LOADS ALL 
+
+*/
 function loadHome(){
-
-    //                          SAMPLE
-    /* body
-     <header class="title-home">
-            <h1 class="title">DataBase Film</h1>
-
-            <input type="text" class="input-text" name="" id="">
-        </header>
-
-
-        <main class="main-home">
-
-
-
-        </main>
-
-        <footer class="footer-home">
-            
-            <button type="submit" class="Settings-home">Settings</button>
-
-        </footer>
-    
-    */
-    
     //DECLARING VARIABLES IN THE HEADER
     let button = document.createElement("button")
     let icon = document.createElement("ion-icon")
     let title = document.createElement("h1")
     let input = document.createElement("input")
-    let titleContainer = document.querySelector("title-container-home")
-    
+    let form = document.createElement("form")
+    let titleContainer = document.querySelector(".title-container-home")
+    //console.log("banana")
     //RESETTING THE TITLE CONTAINER
     titleContainer.innerHTML = ""
 
@@ -167,6 +142,10 @@ function loadHome(){
 
     //SETTING ATTRIBUTES FOR THE ICON FOR THE SEARCH BUTTON
     icon.setAttribute("name", "search-outline")
+
+    //SETTING ATTRIBUTES FOR THE FORM
+    form.setAttribute("id", "form")
+    form.setAttribute("autocomplete", "off")
 
     //SETTING ATTRIBUTES FOR THE SEARCH BUTTON
     button.setAttribute("type", "submit")
@@ -183,8 +162,13 @@ function loadHome(){
     input.setAttribute("type", "text")
     input.setAttribute("name", "")
     input.setAttribute("id", "")
+    input.setAttribute("placeholder", "cerca un film")
     
+    //APPENDING THE OBJECTS IN THE FORM
+    form.append(input)
+    form.append(button)
     //APPENDING THE OBJECTS IN THE CONTAINER
     titleContainer.append(title)
-    titleContainer.append(button)
+    titleContainer.append(form)
+    //titleContainer.append(button)
 }
