@@ -6,6 +6,17 @@ let userStored = localStorage.getItem("username")
 
 loadHome()
 
+let test = document.querySelector(".test")
+
+test.addEventListener("click", event =>{
+
+    event.preventDefault()
+
+    document.location = "settings"
+    //window.history.pushState("object or string", "Title", "/settings")
+})
+
+
 //console.log("prova")
 document.body.style.backgroundImage = localStorage.getItem("background-image");
 var uploaded_image;
