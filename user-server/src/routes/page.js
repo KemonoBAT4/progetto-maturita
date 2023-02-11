@@ -28,12 +28,11 @@ pageRouter.get("/login", async(req,res) => {
     res.render("login")
 })
 
-pageRouter.post("/test", async(req, res) => {
+pageRouter.post("/test", function (req, res){
     
     
-    console.log(req.body)
-    //console.log(req)
-
+    //console.log(req.body)
+    res.send(JSON.stringify(req.body));
 })
 
 //ageRouter.get("/   ")

@@ -19,17 +19,15 @@ app.use("/img", express.static(__dirname + "public/img"))
 app.set("views", "./src/views")
 app.set("view engine", "ejs")
 
-app.post("/test", function (req, res){
-    
-    
-    //console.log(req.body)
-    res.send(JSON.stringify(req.body));
-})
 //ROUTES
 app.use("/", pageRoutes)
 app.use("/settings", pageRoutes)
 app.use("/login", pageRoutes)
-//app.use("/test", pageRoutes)
+app.use("/register", pageRoutes)
+app.use("/signin", pageRoutes)
+app.use("/signup", pageRoutes)
+//app.use("test", pageRoutes)
+
 
 //STARTING THE SERVER & LISTENING ON A SPECIFIC PORT
 app.listen(port, ()=>{
