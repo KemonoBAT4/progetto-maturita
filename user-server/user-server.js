@@ -26,7 +26,7 @@ app.use("/login", pageRoutes)
 app.use("/register", pageRoutes)
 app.use("/signin", pageRoutes)
 app.use("/signup", pageRoutes)
-//app.use("test", pageRoutes)
+app.use("/test", pageRoutes)
 
 
 //STARTING THE SERVER & LISTENING ON A SPECIFIC PORT

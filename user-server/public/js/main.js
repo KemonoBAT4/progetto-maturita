@@ -1,8 +1,9 @@
-//const { response } = require("express");
 
 let imgStored = localStorage.getItem("background-image")
 let passwordStored = localStorage.getItem("password")
 let userStored = localStorage.getItem("username")
+
+console.log(userStored)
 
 loadHome()
 
@@ -11,9 +12,6 @@ let test = document.querySelector(".test")
 test.addEventListener("click", event =>{
 
     event.preventDefault()
-
-    document.location = "settings"
-    //window.history.pushState("object or string", "Title", "/settings")
 })
 
 
@@ -40,28 +38,8 @@ settingsHome.addEventListener("click", event=>{
 
     event.preventDefault()
 
-
+    document.location = "/settings"
 })
-
-function register(){
-
-}
-
-function encryptPassword(){
-
-}
-
-function login(){
-
-    let encryptedPassword = encryptPassword()
-    fetch("localhost:5000/login/"+username+"&" + encryptedPassword).then(res =>{
-
-        return res.json();
-    }).then(response=>{
-
-        console.log(response)
-    })
-}
 
 function getUser(username){
 
@@ -106,13 +84,9 @@ function newFilm(){
 
 }
 
-function loadLogin(){
-    
-}
 
 /**
- * LOADS ALL 
-
+ * LOADS THE HOME TITLE
 */
 function loadHome(){
     //DECLARING VARIABLES IN THE HEADER
