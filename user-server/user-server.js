@@ -1,37 +1,46 @@
-    const express = require('express')
+const express = require('express')
+const fetch = require('cross-fetch')
 const { addAbortSignal } = require('stream')
 const port = 8000
 const app = express()
 const pageRoutes = require("./src/routes/page")
 
-
-
 app.use(express.json());
 app.use(express.urlencoded());
 
-//STATIC DIRECTORY
+
+//---------------STATIC DIRECTORY---------------//
 app.use(express.static("public"))
 app.use("/css", express.static(__dirname + "public/css"))
 app.use("/js", express.static(__dirname + "public/js"))
 app.use("/img", express.static(__dirname + "public/img"))
+//----------------------------------------------//
 
-//SETTING UP THE VIEW ENGINE
+
+//---SETTING UP THE VIEW ENGINE---//
 app.set("views", "./src/views")
 app.set("view engine", "ejs")
+//--------------------------------//
 
-//ROUTES
+
+//---------------ROUTES---------------//
+
+//ROUTES FOR RENDERING PAGES
 app.use("/", pageRoutes)
 app.use("/settings", pageRoutes)
 app.use("/login", pageRoutes)
 app.use("/register", pageRoutes)
-app.use("/signin", pageRoutes)
-app.use("/signup", pageRoutes)
+
+//ROUTES FOR THE LOGIN AND REGISTER DATA
+app.use("/register/data", pageRoutes)
+app.use("/login/data", pageRoutes)
+
+//ROUTE USED FOR TESTS
 app.use("/test", pageRoutes)
 
+//------------------------------------//
 
 //STARTING THE SERVER & LISTENING ON A SPECIFIC PORT
 app.listen(port, ()=>{
     console.log("app listening on port: " + port)
 })
-
-
