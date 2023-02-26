@@ -1,6 +1,13 @@
+//import fetch from 'node-fetch'
+
 const express = require("express")
+const fetch = require('cross-fetch')
+
+
 const pageRouter = express.Router()
 
+
+//GET REQUESTS FOR RENDERING PAGES
 pageRouter.get("/", async(req,res) => {
     
     res.render("index")
@@ -15,20 +22,31 @@ pageRouter.get("/login", async(req,res) => {
     res.render("login")
 })
 
-pageRouter.post("/test", function (req, res){
-    
-    fetch("localhost:5000/users/banana").then(res =>{
+//POST REQUEST FOR THE LOGIN AND THE REGISTER PART
+pageRouter.post("/login/data", function (req, res){
+    let response = login(req.body)
 
-        return res.json();
-    }).then(response=>{
-
-        console.log(response)
-    })
-
-    res.send(JSON.stringify(req.body));
+    //RETURNING THE RESPONSE
+    res.send(JSON.stringify(response));
 })
 
-//ageRouter.get("/   ")
-    //let ciao = 0
+pageRouter.post("/register/data", function (req, res){
+    let response = login(req.body)
+
+    //RETURNING THE RESPONSE
+    res.send(JSON.stringify(response));
+})
+
+
+
+
+
+//TESTS
+pageRouter.post("/test", function (req, res){
+    let response = login(req.body)
+
+    //RETURNING THE RESPONSE
+    res.send(JSON.stringify(response));
+})
 
 module.exports = pageRouter

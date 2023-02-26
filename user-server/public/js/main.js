@@ -7,14 +7,6 @@ console.log(userStored)
 
 loadHome()
 
-let test = document.querySelector(".test")
-
-test.addEventListener("click", event =>{
-
-    event.preventDefault()
-})
-
-
 //console.log("prova")
 document.body.style.backgroundImage = localStorage.getItem("background-image");
 var uploaded_image;
@@ -136,3 +128,4 @@ function loadHome(){
     titleContainer.append(form)
     //titleContainer.append(button)
 }
+

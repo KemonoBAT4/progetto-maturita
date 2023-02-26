@@ -37,7 +37,6 @@ app.use("/login/data", pageRoutes)
 
 //ROUTE USED FOR TESTS
 app.use("/test", pageRoutes)
-
 //------------------------------------//
 
 //STARTING THE SERVER & LISTENING ON A SPECIFIC PORT

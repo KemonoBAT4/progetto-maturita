@@ -1,0 +1,16 @@
+{
+    "user": [
+      {
+        "name": "user1",
+        "email": "kemono.bat.4@gmail.com",
+        "password": "test",
+        "permissions": "2"
+      },
+      {
+        "name": "user2",
+        "email": "kemono.bat.4@gmail.com",
+        "password": "test",
+        "permissions": "1"
+      }
+    ]
+  }
