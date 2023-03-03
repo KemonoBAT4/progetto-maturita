@@ -2,8 +2,6 @@
 
 const express = require("express")
 const fetch = require('cross-fetch')
-
-
 const pageRouter = express.Router()
 
 
@@ -24,17 +22,25 @@ pageRouter.get("/login", async(req,res) => {
 
 //POST REQUEST FOR THE LOGIN AND THE REGISTER PART
 pageRouter.post("/login/data", function (req, res){
-    let response = login(req.body)
+    let response = req.body
 
     //RETURNING THE RESPONSE
     res.send(JSON.stringify(response));
 })
 
 pageRouter.post("/register/data", function (req, res){
-    let response = login(req.body)
+    let response = req.body
 
     //RETURNING THE RESPONSE
     res.send(JSON.stringify(response));
+})
+
+//GET REQUESTS FOR OTHER PURPOSES
+pageRouter.post("/user/data/:name", function (req, res){
+    let request = req.name
+
+    //RETURNING THE RESPONSE
+    //res.send(JSON.stringify(response));
 })
 
 
@@ -43,7 +49,7 @@ pageRouter.post("/register/data", function (req, res){
 
 //TESTS
 pageRouter.post("/test", function (req, res){
-    let response = login(req.body)
+    let response = req.body
 
     //RETURNING THE RESPONSE
     res.send(JSON.stringify(response));

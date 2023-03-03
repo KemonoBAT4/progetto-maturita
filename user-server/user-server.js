@@ -35,8 +35,12 @@ app.use("/register", pageRoutes)
 app.use("/register/data", pageRoutes)
 app.use("/login/data", pageRoutes)
 
+//ROUTES FOR OTHER DATA TYPE
+app.use("/user/data/:name", pageRoutes)
+
 //ROUTE USED FOR TESTS
 app.use("/test", pageRoutes)
+
 //------------------------------------//
 
 //STARTING THE SERVER & LISTENING ON A SPECIFIC PORT

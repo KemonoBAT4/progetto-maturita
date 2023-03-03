@@ -1,18 +1,15 @@
 
 let submit = document.querySelector(".submit-button")
 
-localStorage.setItem("username", "test")
+//localStorage.setItem("username", "")
 //console.log(localStorage.getItem("username"))
 
 submit.addEventListener("click", event =>{
     event.preventDefault()
 
-    let username = document.querySelector(".user-text").value
-    let password = document.querySelector(".password-text").value
-
-    //let data = {'name': 'John Doe', 'occupation': 'John Doe'}
-    let data = {'username': " " + username + " " , 'password' : " "+ password + " "}
-    doRequest(data)
+    let data = {'username': " " + document.querySelector(".user-text").value + " " , 'password' : " "+ document.querySelector(".password-text").value + " "}
+    //console.log(data)
+    doRequest(data, "login")
 
         /*if(response != null){
             if(response.username === "true"){
@@ -27,10 +24,8 @@ submit.addEventListener("click", event =>{
     //})
 })
 
-async function doRequest(data){
-    
-    
-    let response = await fetch("/test", {
+async function doRequest(data, type){
+    await fetch("/" + type + "/data", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
