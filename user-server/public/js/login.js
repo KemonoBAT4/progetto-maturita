@@ -9,7 +9,7 @@ submit.addEventListener("click", event =>{
 
     let data = {'username': " " + document.querySelector(".user-text").value + " " , 'password' : " "+ document.querySelector(".password-text").value + " "}
     //console.log(data)
-    //doRequest(data, "login")
+    doRequest(data, "login")
     test()
         /*if(response != null){
             if(response.username === "true"){
@@ -37,7 +37,17 @@ async function doRequest(data, type){
         return response.json();
     }).then(res =>{
         
-        console.log(res)
+        //console.log(res)
+        let logged = res.logged
+
+        if(logged == false){
+            accessDenied()
+        }else if(logged == true){
+            localStorage.setItem("logged", true)
+            document.location = "/"
+        }else{
+            accessDenied()
+        }
     })
 }
 

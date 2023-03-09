@@ -35,6 +35,12 @@ pageRouter.get("/login", async(req,res) => {
 pageRouter.post("/login/data", function (req, res){
     let response = req.body
 
+    conn.query("select * from authors", function(err, result, fields){
+
+        console.log(result)
+
+        //res.status(200).end(JSON.stringify(result));
+    })
     //RETURNING THE RESPONSE
     res.send(JSON.stringify(response));
 })

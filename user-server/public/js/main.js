@@ -5,12 +5,10 @@ console.log(userStored)
 
 checkLogin()
 
-loadHome()
-
 function checkLogin(){
     if(logged != null){
         if( logged === "true"){
-            loadSettings()
+            loadHome()
         }else{
             document.location = "/login"
         }
