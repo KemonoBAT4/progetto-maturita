@@ -1,14 +1,13 @@
-let userStored = localStorage.getItem("username")
+
 let logged = localStorage.getItem("logged")
 
-console.log(userStored)
-
-checkLogin()
+//checkLogin()
+//loadHome()
 
 function checkLogin(){
     if(logged != null){
         if( logged === "true"){
-            loadHome()
+            showFilms()
         }else{
             document.location = "/login"
         }
@@ -18,24 +17,23 @@ function checkLogin(){
 }
 
 
-//console.log("prova")
-document.body.style.backgroundImage = localStorage.getItem("background-image");
-var uploaded_image;
 
-/*image_input.addEventListener('change', function() {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => {
-    uploaded_image = reader.result;
-    `url(${uploaded_image})`;
-
-    localStorage.setItem("background-image",`url(${uploaded_image})`);
-    document.body.style.backgroundImage = `url(${uploaded_image})`;
-  });
-  reader.readAsDataURL(this.files[0]);
-});*/
-
+let userStored = localStorage.getItem("username")
+let button = document.querySelector("#searchButton")
 let settingsHome = document.querySelector(".settings-home")
 
+button.addEventListener("clic", event =>{
+
+    event.preventDefault()
+    let search = document.querySelector("#searchInput").value
+    document.querySelector("#searchInput").value = ""
+
+    if(search.slice(0,1) == "/"){
+        //doStuff()
+    }else{
+        getFilm(search)
+
+})  
 
 settingsHome.addEventListener("click", event=>{
 
@@ -88,9 +86,16 @@ function newFilm(){
 }
 
 
+function showFilms(){
+
+    let films = getFilm()
+
+}
+
 /**
  * LOADS THE HOME TITLE
 */
+/*
 function loadHome(){
     //DECLARING VARIABLES IN THE HEADER
     let button = document.createElement("button")
@@ -130,6 +135,13 @@ function loadHome(){
     input.setAttribute("name", "")
     input.setAttribute("id", "")
     input.setAttribute("placeholder", "cerca un film")
+
+
+    button.addEventListener("click", event=>{
+
+        let search = input.value
+        input.value = ""
+    })
     
     //APPENDING THE OBJECTS IN THE FORM
     form.append(input)
@@ -138,5 +150,21 @@ function loadHome(){
     titleContainer.append(title)
     titleContainer.append(form)
     //titleContainer.append(button)
-}
+}*/
 
+
+
+document.body.style.backgroundImage = localStorage.getItem("background-image");
+var uploaded_image;
+
+/*image_input.addEventListener('change', function() {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    uploaded_image = reader.result;
+    `url(${uploaded_image})`;
+
+    localStorage.setItem("background-image",`url(${uploaded_image})`);
+    document.body.style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});*/
