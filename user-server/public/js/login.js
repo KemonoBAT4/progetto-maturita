@@ -9,8 +9,8 @@ submit.addEventListener("click", event =>{
 
     let data = {'username': " " + document.querySelector(".user-text").value + " " , 'password' : " "+ document.querySelector(".password-text").value + " "}
     //console.log(data)
-    doRequest(data, "login")
-
+    //doRequest(data, "login")
+    test()
         /*if(response != null){
             if(response.username === "true"){
                 document.location = "/"
@@ -46,4 +46,12 @@ function accessDenied(reason, id){
 
     
 
+}
+
+function test(){
+    fetch("/user/data/test1").then(response =>{
+        return response.json()
+    }).then(response =>{
+        console.log(response)
+    })
 }

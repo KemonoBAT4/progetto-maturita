@@ -1,8 +1,19 @@
-//import fetch from 'node-fetch'
 
 const express = require("express")
-const fetch = require('cross-fetch')
+const mysql = require('mysql')
 const pageRouter = express.Router()
+
+let conn = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "films"
+});
+
+conn.connect(function(err) {
+    if (err) throw err
+    console.log("Connected!")
+})
 
 
 //GET REQUESTS FOR RENDERING PAGES
@@ -36,9 +47,21 @@ pageRouter.post("/register/data", function (req, res){
 })
 
 //GET REQUESTS FOR OTHER PURPOSES
-pageRouter.post("/user/data/:name", function (req, res){
-    let request = req.name
+pageRouter.get("/user/data/:name", function (req, res){
+    let request = req.query.name
+    console.log("request: " + request)
 
+    let query = "select * from users where nome = " + request 
+
+    console.log("query: " + query)
+    conn.query(query, function(err, result, fields){
+
+        console.log(result)
+        //console.log(err)
+          //return a specific record
+          //console.log(result[2].address);
+        //res.status(200).end(JSON.stringify(result));
+      })
     //RETURNING THE RESPONSE
     //res.send(JSON.stringify(response));
 })

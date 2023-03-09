@@ -1,11 +1,24 @@
-
-let imgStored = localStorage.getItem("background-image")
-let passwordStored = localStorage.getItem("password")
 let userStored = localStorage.getItem("username")
+let logged = localStorage.getItem("logged")
 
 console.log(userStored)
 
+checkLogin()
+
 loadHome()
+
+function checkLogin(){
+    if(logged != null){
+        if( logged === "true"){
+            loadSettings()
+        }else{
+            document.location = "/login"
+        }
+    }else{
+        document.location = "/login"
+    }
+}
+
 
 //console.log("prova")
 document.body.style.backgroundImage = localStorage.getItem("background-image");
