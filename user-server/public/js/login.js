@@ -7,10 +7,10 @@ let submit = document.querySelector(".submit-button")
 submit.addEventListener("click", event =>{
     event.preventDefault()
 
-    let data = {'username': " " + document.querySelector(".user-text").value + " " , 'password' : " "+ document.querySelector(".password-text").value + " "}
+    let data = {'username': "" + document.querySelector(".user-text").value + "" , 'password' : ""+ document.querySelector(".password-text").value + ""}
     //console.log(data)
     doRequest(data, "login")
-    test()
+    //test()
         /*if(response != null){
             if(response.username === "true"){
                 document.location = "/"
@@ -34,19 +34,20 @@ async function doRequest(data, type){
         body: JSON.stringify(data)
     }).then(response =>{
 
+        //onsole.log(response)
         return response.json();
     }).then(res =>{
         
-        //console.log(res)
+        console.log(res)
         let logged = res.logged
 
         if(logged == false){
-            accessDenied()
+            //accessDenied()
         }else if(logged == true){
             localStorage.setItem("logged", true)
             document.location = "/"
         }else{
-            accessDenied()
+            //accessDenied()
         }
     })
 }
