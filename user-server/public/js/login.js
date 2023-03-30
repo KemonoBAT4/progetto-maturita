@@ -1,27 +1,12 @@
 
 let submit = document.querySelector(".submit-button")
 
-//localStorage.setItem("username", "")
-//console.log(localStorage.getItem("username"))
+
 
 submit.addEventListener("click", event =>{
     event.preventDefault()
-
     let data = {'username': "" + document.querySelector(".user-text").value + "" , 'password' : ""+ document.querySelector(".password-text").value + ""}
-    //console.log(data)
     doRequest(data, "login")
-    //test()
-        /*if(response != null){
-            if(response.username === "true"){
-                document.location = "/"
-            }else{
-                accessDenied("Wrong username or password", 1)
-            }
-        }else{
-            accessDenied("can't connect to the server, check your connection or the server status", 2)
-        }*/
-        //console.log(response)
-    //})
 })
 
 async function doRequest(data, type){
@@ -33,30 +18,30 @@ async function doRequest(data, type){
         },
         body: JSON.stringify(data)
     }).then(response =>{
-
-        //onsole.log(response)
         return response.json();
     }).then(res =>{
-        
-        console.log(res)
         let logged = res.logged
 
         if(logged == false){
-            //accessDenied()
+            accessDenied(0)
         }else if(logged == true){
             localStorage.setItem("logged", true)
+            localStorage.setItem("username", data.username)
             document.location = "/"
         }else{
-            //accessDenied()
+            accessDenied(1)
         }
     })
 }
 
 
-function accessDenied(reason, id){
-
-    
-
+function accessDenied(id){
+    document.querySelector(".password-text").value = ""
+    if(id === 0){
+        //show "wrong username or password"
+    }else if(id === 1) {
+        //show "internal server error or stuff like that"
+    }
 }
 
 function test(){
