@@ -1,5 +1,4 @@
 const express = require('express')
-//const fetch = require('cross-fetch')
 
 const { addAbortSignal } = require('stream')
 const port = 8000

@@ -1,7 +1,8 @@
 
 let logged = localStorage.getItem("logged")
 
-//checkLogin()
+checkLogin()
+console.log(logged)
 //loadHome()
 
 function checkLogin(){
@@ -22,7 +23,7 @@ let userStored = localStorage.getItem("username")
 let button = document.querySelector("#searchButton")
 let settingsHome = document.querySelector(".settings-home")
 
-button.addEventListener("clic", event =>{
+button.addEventListener("click", event =>{
 
     event.preventDefault()
     let search = document.querySelector("#searchInput").value
@@ -31,8 +32,8 @@ button.addEventListener("clic", event =>{
     if(search.slice(0,1) == "/"){
         //doStuff()
     }else{
-        getFilm(search)
-
+        showFilms()
+    }
 })  
 
 settingsHome.addEventListener("click", event=>{
@@ -42,39 +43,46 @@ settingsHome.addEventListener("click", event=>{
     document.location = "/settings"
 })
 
-function getUser(username){
+//AUTHORS FUNCTIONS
+function removeAuthor(name){
 
-    fetch("localhost:5000/users/banana").then(res =>{
-
-        return res.json();
-    }).then(response=>{
-
-        console.log(response)
-    })
 }
 
-function getFilms(){
-    fetch("localhost:5000/films/").then(res =>{
+function addAuthor(name){
 
-        return res.json();
-    }).then(response=>{
-
-        console.log(response)
-    })
 }
 
-function getFilm(filmName){
+function updateAuthor(name){
+
+}
+
+function getAuthor(name){
 
 }
 
 function getAuthors(){
-    fetch("localhost:5000/authors/").then(res =>{
+
+}
+
+//GET USER INFORMATIONS
+function getUser(username){
+
+    /*fetch("localhost:5000/users/username").then(res =>{
 
         return res.json();
     }).then(response=>{
 
         console.log(response)
-    })
+    })*/
+}
+
+//FILMS FUNCTIONS
+async function getFilms(){
+    return await fetch("/films").then(res =>{return res.json()})
+}
+
+function getFilm(filmName){
+
 }
 
 function updateFilm(){
@@ -85,74 +93,19 @@ function newFilm(){
 
 }
 
+//OTHER
+async function showFilms(){
 
-function showFilms(){
+    let films = await getFilms()
+    let main = document.querySelector(".main-home")
 
-    let films = getFilm()
-
+    
+    /*
+    for(let film of films){
+        console.log(film.name)
+    }
+    */
 }
-
-/**
- * LOADS THE HOME TITLE
-*/
-/*
-function loadHome(){
-    //DECLARING VARIABLES IN THE HEADER
-    let button = document.createElement("button")
-    let icon = document.createElement("ion-icon")
-    let title = document.createElement("h1")
-    let input = document.createElement("input")
-    let form = document.createElement("form")
-    let titleContainer = document.querySelector(".title-container-home")
-    //console.log("banana")
-    //RESETTING THE TITLE CONTAINER
-    titleContainer.innerHTML = ""
-
-    //SETTING ATTRIBUTES FOR THE TITLE
-    title.className = "title-home"
-    title.innerText = "DataBase Film"
-
-    //SETTING ATTRIBUTES FOR THE ICON FOR THE SEARCH BUTTON
-    icon.setAttribute("name", "search-outline")
-
-    //SETTING ATTRIBUTES FOR THE FORM
-    form.setAttribute("id", "form")
-    form.setAttribute("autocomplete", "off")
-
-    //SETTING ATTRIBUTES FOR THE SEARCH BUTTON
-    button.setAttribute("type", "submit")
-    button.setAttribute("id", "search-home")
-    button.setAttribute("value", "search")
-    button.setAttribute("class", "btn btn-dark")
-    button.innerText = "search"
-    
-    //APPENDING THE ICON IN THE BUTTON
-    button.append(icon)
-
-    //SETTING ATTRIBUTES FOR THE INPUT BAR
-    input.className = "input-home"
-    input.setAttribute("type", "text")
-    input.setAttribute("name", "")
-    input.setAttribute("id", "")
-    input.setAttribute("placeholder", "cerca un film")
-
-
-    button.addEventListener("click", event=>{
-
-        let search = input.value
-        input.value = ""
-    })
-    
-    //APPENDING THE OBJECTS IN THE FORM
-    form.append(input)
-    form.append(button)
-    //APPENDING THE OBJECTS IN THE CONTAINER
-    titleContainer.append(title)
-    titleContainer.append(form)
-    //titleContainer.append(button)
-}*/
-
-
 
 document.body.style.backgroundImage = localStorage.getItem("background-image");
 var uploaded_image;
