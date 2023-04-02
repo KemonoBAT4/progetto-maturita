@@ -1,27 +1,17 @@
 
 let logged = localStorage.getItem("logged")
-
-checkLogin()
-console.log(logged)
-//loadHome()
-
-function checkLogin(){
-    if(logged != null){
-        if( logged === "true"){
-            showFilms()
-        }else{
-            document.location = "/login"
-        }
-    }else{
-        document.location = "/login"
-    }
-}
-
-
-
 let userStored = localStorage.getItem("username")
 let button = document.querySelector("#searchButton")
 let settingsHome = document.querySelector(".settings-home")
+
+checkLogin()
+console.log(logged)
+
+getChampionsNames("13.6.1")
+
+
+
+
 
 button.addEventListener("click", event =>{
 
@@ -32,7 +22,6 @@ button.addEventListener("click", event =>{
     if(search.slice(0,1) == "/"){
         //doStuff()
     }else{
-        showFilms()
     }
 })  
 
@@ -43,29 +32,18 @@ settingsHome.addEventListener("click", event=>{
     document.location = "/settings"
 })
 
-//AUTHORS FUNCTIONS
-function removeAuthor(name){
 
+async function getChampionsNames(patch){
+    let list = await fetch("/champions/" + patch).then(res => {return res.json()})
+    
+    console.log(list)
+    
+    //return list
 }
 
-function addAuthor(name){
-
-}
-
-function updateAuthor(name){
-
-}
-
-function getAuthor(name){
-
-}
-
-function getAuthors(){
-
-}
 
 //GET USER INFORMATIONS
-function getUser(username){
+function getUser(token){
 
     /*fetch("localhost:5000/users/username").then(res =>{
 
@@ -74,37 +52,6 @@ function getUser(username){
 
         console.log(response)
     })*/
-}
-
-//FILMS FUNCTIONS
-async function getFilms(){
-    return await fetch("/films").then(res =>{return res.json()})
-}
-
-function getFilm(filmName){
-
-}
-
-function updateFilm(){
-
-}
-
-function newFilm(){
-
-}
-
-//OTHER
-async function showFilms(){
-
-    let films = await getFilms()
-    let main = document.querySelector(".main-home")
-
-    
-    /*
-    for(let film of films){
-        console.log(film.name)
-    }
-    */
 }
 
 document.body.style.backgroundImage = localStorage.getItem("background-image");
@@ -121,3 +68,17 @@ var uploaded_image;
   });
   reader.readAsDataURL(this.files[0]);
 });*/
+
+
+//use a accedToken instead of a username
+function checkLogin(){
+    if(logged != null){
+        if( logged === "true"){
+            //showFilms()
+        }else{
+            document.location = "/login"
+        }
+    }else{
+        document.location = "/login"
+    }
+}

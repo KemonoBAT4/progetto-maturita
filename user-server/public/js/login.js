@@ -34,7 +34,6 @@ async function doRequest(data, type){
     })
 }
 
-
 function accessDenied(id){
     document.querySelector(".password-text").value = ""
     if(id === 0){
@@ -42,12 +41,4 @@ function accessDenied(id){
     }else if(id === 1) {
         //show "internal server error or stuff like that"
     }
-}
-
-function test(){
-    fetch("/user/data/test1").then(response =>{
-        return response.json()
-    }).then(response =>{
-        console.log(response)
-    })
 }

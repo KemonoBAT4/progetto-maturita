@@ -1,8 +1,7 @@
-
+const fetch = require('node-fetch')
 const mysql = require('mysql2')
 const express = require("express")
 const pageRouter = express.Router()
-
 
 const pool = mysql.createPool({
     host: "localhost",
@@ -73,23 +72,46 @@ pageRouter.post("/register/data", function (req, res){
 pageRouter.get("/user/data/:name", function (req, res){
     let request = req.body.name
 
+
+
+
+
     let query = "select * from users where nome = " + request 
 })
 
-//GET REQUEST FOR THE FILMS/AUTHORS
-pageRouter.get("/films", async(req,res) => {
-    pool.query("select * from films").then(result =>{
-        res.send(JSON.stringify(result[0]));
-    })
+//GET REQUEST FOR THE CHAMPIONS
+pageRouter.get("/champions/:patch", async(req,res) => {
+    let patch = req.params.patch
+    console.log(patch)
+
+    let url = 'http://ddragon.leagueoflegends.com/cdn/'+ patch +'/data/en_US/champion.json'
+
+    let options = {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }
+    let response = await fetch(url, options).then(response => { return (response.json())})    
+
+    response = response.data
+
+
+    res.send(JSON.stringify(response))
 })
 
+pageRouter.get("/patch", async(req, res) => {
+
+    let data = await fetch('https://ddragon.leagueoflegends.com/api/versions.json').then(version =>{return version.json()})
+    
+    res.send(JSON.stringify(data[0]))
+})
 
 //TESTS
-pageRouter.post("/test", function (req, res){
-    let response = req.body
+pageRouter.get("/test", function (req, res){
 
-    //RETURNING THE RESPONSE
-    res.send(JSON.stringify(response));
+
 })
 
 module.exports = pageRouter

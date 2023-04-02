@@ -1,5 +1,5 @@
 const express = require('express')
-
+const fetch = require('node-fetch')
 const { addAbortSignal } = require('stream')
 const port = 8000
 const app = express()
@@ -37,6 +37,9 @@ app.use("/login/data", pageRoutes)
 
 //ROUTES FOR OTHER DATA TYPE
 app.use("/user/data/:name", pageRoutes)
+app.use("/champions", pageRoutes)
+app.use("/patch", pageRoutes)
+app.use
 
 //ROUTE USED FOR TESTS
 app.use("/test", pageRoutes)
