@@ -39,7 +39,7 @@ app.use("/login/data", pageRoutes)
 app.use("/user/data/:name", pageRoutes)
 app.use("/champions", pageRoutes)
 app.use("/patch", pageRoutes)
-app.use
+app.use("/champion/:patch/:name", pageRoutes)
 
 //ROUTE USED FOR TESTS
 app.use("/test", pageRoutes)
