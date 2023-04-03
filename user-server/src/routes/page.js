@@ -71,18 +71,13 @@ pageRouter.post("/register/data", function (req, res){
 //GET REQUESTS FOR OTHER PURPOSES
 pageRouter.get("/user/data/:name", function (req, res){
     let request = req.body.name
-
-
-
-
-
     let query = "select * from users where nome = " + request 
 })
 
 //GET REQUEST FOR THE CHAMPIONS
 pageRouter.get("/champions/:patch", async(req,res) => {
     let patch = req.params.patch
-    console.log(patch)
+    //console.log(patch)
 
     let url = 'http://ddragon.leagueoflegends.com/cdn/'+ patch +'/data/en_US/champion.json'
 
@@ -101,10 +96,39 @@ pageRouter.get("/champions/:patch", async(req,res) => {
     res.send(JSON.stringify(response))
 })
 
+pageRouter.get("/champion/:patch/:name", async(req,res) => {   
+    let patch = req.params.patch
+    let name = req.params.name
+    let data
+    console.log(patch)
+    console.log(name)
+
+    let url = 'http://ddragon.leagueoflegends.com/cdn/'+ patch +'/data/en_US/champion/' + name + '.json'
+
+    let options = {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }
+    let response = await fetch(url, options).then(response => { return (response.json())})    
+    res.send(JSON.stringify(response))
+})
+
 pageRouter.get("/patch", async(req, res) => {
 
-    let data = await fetch('https://ddragon.leagueoflegends.com/api/versions.json').then(version =>{return version.json()})
-    
+    let url = 'https://ddragon.leagueoflegends.com/api/versions.json'
+
+    let options = {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }
+    let data = await fetch(url, options).then(response => { return (response.json())})   
+
     res.send(JSON.stringify(data[0]))
 })
 
