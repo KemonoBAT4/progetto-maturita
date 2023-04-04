@@ -7,7 +7,7 @@ let settingsHome = document.querySelector(".settings-home")
 //checkLogin()
 //console.log(logged)
 
-buildChampSelected("aatrox")
+buildChampSelected("gwen")
 //getChampion("13.6.1", "Gwen")
 //getChampionsNames("13.6.1")
 
@@ -111,22 +111,67 @@ async function buildChampSelected(name){
 
 
     //CHAMPION IMGS
+    let imgs = document.createElement("div")
+    imgs.className = "imgs-container"
     let loadingUrl = "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/" + name + "_0.jpg"
     let squareUrl  = "https://ddragon.leagueoflegends.com/cdn/" + patch + "/img/champion/" + name + ".png"
     
     let defaultLoading = document.createElement("img")
     defaultLoading.setAttribute("src", loadingUrl)
     defaultLoading.setAttribute("class", "loading-img")
+    imgs.append(defaultLoading)
     
     let defaultSquare = document.createElement("img")
     defaultSquare.setAttribute("src", squareUrl)
     defaultSquare.setAttribute("class","square-img")
+    imgs.append(defaultSquare)
 
-    //CHAMPION SPELLS
+    let defaultPassive = document.createElement("img")
+    defaultPassive.setAttribute("src","https://ddragon.leagueoflegends.com/cdn/"+ patch +"/img/passive/" + data.passive.image.full)
+    defaultPassive.setAttribute("class", "passive-img")
+
+    //MAGARI FARE CHE CLICCANDO LA PASSIVA CAMBIANO LE SPLASH ART DELLE IMMAGINI PER VEDERE LE ALTRE SKIN
+    imgs.append(defaultPassive)
     
+    //CHAMPION SPELLS
+    let spells = document.createElement("div")
+    spells.className = "spells-container"
     for(let spell of data.spells){
+        let singleContainer = document.createElement("div")
+        singleContainer.className = "single-spell-container"
+
         console.log(spell)
+        //SPELL IMAGES
+        let defaultSpellImage = document.createElement("img")
+        defaultSpellImage.setAttribute("src", "https://ddragon.leagueoflegends.com/cdn/"+ patch +"/img/spell/" + spell.image.full)
+        defaultSpellImage.setAttribute("class", "spells-img")
+        
+        //SPELL DESCRIPTION
+        let defaultSpellDescription = document.createElement("div")
+        defaultSpellDescription.className = "description-container"
+
+        let spellTitle = document.createElement("h1")
+        spellTitle.className = "spell-title"
+        spellTitle.innerText = spell.id.slice(name.length)
+
+        let spellDescription = document.createElement("h1")
+        spellDescription.className = "spell-description"
+        spellDescription.innerText = spell.description
+
+        defaultSpellDescription.append(spellTitle)
+        defaultSpellDescription.append(spellDescription)
+
+        singleContainer.append(defaultSpellImage)
+        singleContainer.append(defaultSpellDescription)
+
+        spells.append(singleContainer)
     }
+    
+
+    /*DA FIXARE:
+        gli onHit tag devono sparire, pure i br   
+    */
+
     //spells
     //  "https://ddragon.leagueoflegends.com/cdn/"+ patch +"/img/spell/" + abilitaI.image.full + "";
 
@@ -136,11 +181,16 @@ async function buildChampSelected(name){
 
 
     //APPEND ALL THE CONTAINERS
+    champDataContainer.append(imgs)
+    champDataContainer.append(spells)
+
     RunesBuildContainer.append(RunesContainer)
     RunesBuildContainer.append(BuildContainer)
 
     searchContainer.append(champDataContainer)
     searchContainer.append(RunesBuildContainer)
+
+    home.append(searchContainer)
 }
 
 
