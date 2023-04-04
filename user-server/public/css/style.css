@@ -9,18 +9,23 @@ a{
 
 }
 /*HOME*/
-#search-home{
-
+.loading-img{
+    width: 200px;
+    height: auto;
+    margin-top: 5%;
 }
 
-.title-home{
-
-
+.imgs-container{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
 }
 
-.input-home{
-
+.square-img{
+    margin-top: 5%;
+    width: 200px;
+    height: auto;
+    display: flex;
 }
-
 
 /**/
